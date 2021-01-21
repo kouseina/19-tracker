@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nineteen_trackers/custom_navigation.dart';
 import 'package:nineteen_trackers/pages/home_page.dart';
+import 'package:nineteen_trackers/pages/onboarding_page.dart';
 import 'package:nineteen_trackers/theme.dart';
 
 void main() {
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
           fontFamily: 'Nunito',
           primaryColor: pinkColor),
-      home: CustomNavigation(),
+      home: OnboardingPage(),
       debugShowCheckedModeBanner: false,
     );
   }

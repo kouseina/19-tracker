@@ -24,7 +24,7 @@ class HomePage extends StatelessWidget {
                       style: titleStyle,
                     ),
                     SizedBox(
-                      height: 35,
+                      height: 10,
                     ),
                     Text(
                       'Coronavirus adalah penyakit menular yang disebabkan oleh virus corona yang baru ditemukan',
