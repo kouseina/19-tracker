@@ -11,7 +11,7 @@ class HomePage extends StatelessWidget {
           child: ListView(
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.fromLTRB(30, 30, 5, 20),
+            padding: const EdgeInsets.fromLTRB(30, 55, 5, 20),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -113,7 +113,7 @@ class HomePage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      'TOTAL KASUS DI (negara)',
+                      'TOTAL KASUS DI INDONESIA',
                       style: subtitleStyle,
                     ),
                     SizedBox(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:nineteen_trackers/my_icons.dart';
+import 'package:nineteen_trackers/pages/chart_page.dart';
 import 'package:nineteen_trackers/pages/home_page.dart';
 import 'package:nineteen_trackers/theme.dart';
 
@@ -13,7 +14,7 @@ class _CustomNavigationState extends State<CustomNavigation> {
   int _selectedIndex = 0;
   List<Widget> _widgetOptions = <Widget>[
     HomePage(),
-    Text('Chart'),
+    ChartPage(),
     Text('Edu-Cov'),
   ];
 
