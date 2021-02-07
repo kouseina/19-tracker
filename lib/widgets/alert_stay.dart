@@ -17,7 +17,7 @@ class AlertStay extends StatelessWidget {
             Expanded(
               flex: 5,
               child: Text(
-                'Please, stay at home if you are sick or have symptoms of Covid 19',
+                'Tenang saja, tinggal di rumah jika sedang sakit',
                 style: titleStyle.copyWith(
                   color: whiteColor,
                   fontSize: 15,

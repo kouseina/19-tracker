@@ -4,7 +4,7 @@ import 'package:nineteen_trackers/my_icons.dart';
 import 'package:nineteen_trackers/theme.dart';
 import 'package:nineteen_trackers/widgets/alert_stay.dart';
 
-class ChartPage extends StatelessWidget {
+class StatisticPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,7 +15,7 @@ class ChartPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.fromLTRB(30, 55, 30, 15),
             child: Text(
-              'Statistics',
+              'Statistika',
               style: titleStyle,
             ),
           ),

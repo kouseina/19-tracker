@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:nineteen_trackers/my_icons.dart';
-import 'package:nineteen_trackers/pages/chart_page.dart';
+import 'package:nineteen_trackers/pages/statistic_page.dart';
+import 'package:nineteen_trackers/pages/information_page.dart';
 import 'package:nineteen_trackers/pages/home_page.dart';
 import 'package:nineteen_trackers/theme.dart';
 
@@ -14,8 +15,8 @@ class _CustomNavigationState extends State<CustomNavigation> {
   int _selectedIndex = 0;
   List<Widget> _widgetOptions = <Widget>[
     HomePage(),
-    ChartPage(),
-    Text('Edu-Cov'),
+    StatisticPage(),
+    InformationPage(),
   ];
 
   void _onItemTap(int index) {
@@ -31,10 +32,11 @@ class _CustomNavigationState extends State<CustomNavigation> {
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.white,
         items: [
           BottomNavigationBarItem(
               icon: SvgPicture.asset(iconHome),
-              title: Text('Home'),
+              label: 'Beranda',
               activeIcon: SvgPicture.asset(
                 iconHome,
                 color: pinkColor,
@@ -45,14 +47,14 @@ class _CustomNavigationState extends State<CustomNavigation> {
                 iconChart,
                 color: pinkColor,
               ),
-              title: Text('Chart')),
+              label: 'Statistika'),
           BottomNavigationBarItem(
               icon: SvgPicture.asset(iconEdu),
               activeIcon: SvgPicture.asset(
                 iconEdu,
                 color: pinkColor,
               ),
-              title: Text('Edu-Cov')),
+              label: 'Informasi'),
         ],
         currentIndex: _selectedIndex,
         onTap: _onItemTap,

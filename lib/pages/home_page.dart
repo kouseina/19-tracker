@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      'Summary',
+                      'Ringkasan',
                       style: titleStyle,
                     ),
                     SizedBox(
@@ -105,10 +105,6 @@ class HomePage extends StatelessWidget {
                 SizedBox(
                   height: 20,
                 ),
-                AlertStay(),
-                SizedBox(
-                  height: 20,
-                ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
@@ -188,7 +184,11 @@ class HomePage extends StatelessWidget {
                       ),
                     )
                   ],
-                )
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                AlertStay(),
               ],
             ),
           )

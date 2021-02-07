@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nineteen_trackers/custom_navigation.dart';
 import 'package:nineteen_trackers/theme.dart';
 import 'package:nineteen_trackers/unboarding_model.dart';
@@ -12,6 +11,10 @@ class OnboardingPage extends StatefulWidget {
 class _OnboardingPageState extends State<OnboardingPage> {
   int currentIndex = 0;
   PageController _controller;
+  String valueChoose;
+  List listItem = [
+    "Indonesia",
+  ];
 
   @override
   void initState() {
@@ -28,6 +31,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Column(
           children: [
@@ -58,7 +62,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                             height: 260,
                           ),
                           SizedBox(
-                            height: 50,
+                            height: 60,
                           ),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -76,20 +80,67 @@ class _OnboardingPageState extends State<OnboardingPage> {
                     );
                   }),
             ),
+            currentIndex == contents.length - 1
+                ? Container(
+                    margin: const EdgeInsets.fromLTRB(30, 0, 30, 10),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 3,
+                      horizontal: 20,
+                    ),
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey, width: 1),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: DropdownButton(
+                      hint: Text('Pilih negara '),
+                      iconSize: 36,
+                      isExpanded: true,
+                      underline: SizedBox(),
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 18,
+                      ),
+                      // icon: Icon(Icons.arrow_drop_down),
+                      value: valueChoose,
+                      onChanged: (newValue) {
+                        setState(() {
+                          valueChoose = newValue;
+                        });
+                      },
+                      items: listItem.map((valueItem) {
+                        return DropdownMenuItem(
+                          value: valueItem,
+                          child: Text(valueItem),
+                        );
+                      }).toList(),
+                    ),
+                  )
+                : SizedBox(
+                    height: 0,
+                  ),
+            SizedBox(
+              height: 10,
+            ),
             Container(
               height: 55,
               margin: EdgeInsets.fromLTRB(30, 0, 30, 35),
               width: double.infinity,
               child: FlatButton(
-                onPressed: () {
-                  if (currentIndex == contents.length - 1) {
-                    Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (_) => CustomNavigation()));
-                  }
-                  _controller.nextPage(
-                      duration: Duration(milliseconds: 100),
-                      curve: Curves.bounceIn);
-                },
+                onPressed: currentIndex == contents.length - 1
+                    ? valueChoose == null
+                        ? null
+                        : () {
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => CustomNavigation()));
+                          }
+                    : () {
+                        _controller.nextPage(
+                            duration: Duration(milliseconds: 100),
+                            curve: Curves.bounceIn);
+                      },
                 child: Text(
                   currentIndex == contents.length - 1 ? 'Continue' : 'Next',
                   style: subtitleStyle.copyWith(
@@ -102,6 +153,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
+                disabledColor: Colors.grey,
               ),
             )
           ],
