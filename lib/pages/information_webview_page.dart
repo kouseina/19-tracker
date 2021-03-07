@@ -24,7 +24,11 @@ class _InformationWebviewPageState extends State<InformationWebviewPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(widget.title),
+          iconTheme: IconThemeData(color: Colors.white),
+          title: Text(
+            widget.title,
+            style: TextStyle(color: Colors.white),
+          ),
         ),
         body: Stack(
           children: [

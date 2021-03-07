@@ -1,10 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:nineteen_trackers/kmb_generator.dart';
 import 'package:nineteen_trackers/theme.dart';
 import 'package:nineteen_trackers/widgets/alert_stay.dart';
 
 class HomePage extends StatelessWidget {
+  double gCasePure = 106855561;
+  double gDeathPure = 2337714;
+  double gRecoverPure = 59690884;
+  double lCasePure = 1174779;
+  double lDeathPure = 31976;
+  double lRecoverPure = 973452;
+
   @override
   Widget build(BuildContext context) {
+    var gCase = k_m_b_generator(gCasePure);
+    var gDeath = k_m_b_generator(gDeathPure);
+    var gRecover = k_m_b_generator(gRecoverPure);
+    var lCase = k_m_b_generator(lCasePure);
+    var lDeath = k_m_b_generator(lDeathPure);
+    var lRecover = k_m_b_generator(lRecoverPure);
+
     return Scaffold(
       backgroundColor: whiteColor,
       body: SafeArea(
@@ -23,12 +38,12 @@ class HomePage extends StatelessWidget {
                       'Ringkasan',
                       style: titleStyle,
                     ),
-                    SizedBox(
-                      height: 10,
-                    ),
                     Text(
                       'Coronavirus adalah penyakit menular yang disebabkan oleh virus corona yang baru ditemukan',
-                      style: descStyle,
+                      style: titleStyle.copyWith(
+                          fontSize: 13,
+                          color: Color(0xff333333),
+                          fontWeight: FontWeight.w300),
                     ),
                     SizedBox(
                       height: 30,
@@ -41,8 +56,8 @@ class HomePage extends StatelessWidget {
                       height: 5,
                     ),
                     Text(
-                      '94,2 M',
-                      style: titleStyle.copyWith(fontSize: 50),
+                      gCase,
+                      style: titleStyle.copyWith(fontSize: 45),
                     ),
                   ],
                 )),
@@ -66,14 +81,14 @@ class HomePage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
-                            'Meninggal',
+                            'MENINGGAL',
                             style: subtitleStyle,
                           ),
                           SizedBox(
                             height: 5,
                           ),
                           Text(
-                            '94,2 M',
+                            gDeath,
                             style: titleStyle.copyWith(
                                 color: blackColor, fontSize: 30),
                           ),
@@ -86,14 +101,14 @@ class HomePage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
-                            'Sembuh',
+                            'SEMBUH',
                             style: subtitleStyle,
                           ),
                           SizedBox(
                             height: 5,
                           ),
                           Text(
-                            '94,2 M',
+                            gRecover,
                             style: titleStyle.copyWith(
                                 color: greenColor, fontSize: 30),
                           ),
@@ -108,9 +123,22 @@ class HomePage extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text(
-                      'TOTAL KASUS DI INDONESIA',
-                      style: subtitleStyle,
+                    Container(
+                      child: Row(
+                        children: <Widget>[
+                          Flexible(
+                            flex: 1,
+                            child: Text(
+                              'Total Kasus Di',
+                              style: subtitleStyle,
+                            ),
+                          ),
+                          Flexible(
+                            flex: 1,
+                            child: ChooseCountry(),
+                          )
+                        ],
+                      ),
                     ),
                     SizedBox(
                       height: 15,
@@ -133,7 +161,7 @@ class HomePage extends StatelessWidget {
                           Column(
                             children: <Widget>[
                               Text(
-                                '12,1 K',
+                                lCase,
                                 style: titleStyle.copyWith(fontSize: 22),
                               ),
                               SizedBox(
@@ -149,7 +177,7 @@ class HomePage extends StatelessWidget {
                           Column(
                             children: <Widget>[
                               Text(
-                                '12,1 K',
+                                lDeath,
                                 style: titleStyle.copyWith(
                                     fontSize: 22, color: blackColor),
                               ),
@@ -166,7 +194,7 @@ class HomePage extends StatelessWidget {
                           Column(
                             children: <Widget>[
                               Text(
-                                '12,1 K',
+                                lRecover,
                                 style: titleStyle.copyWith(
                                     fontSize: 22, color: greenColor),
                               ),
@@ -194,6 +222,53 @@ class HomePage extends StatelessWidget {
           )
         ],
       )),
+    );
+  }
+}
+
+class ChooseCountry extends StatefulWidget {
+  @override
+  _ChooseCountryState createState() => _ChooseCountryState();
+}
+
+class _ChooseCountryState extends State<ChooseCountry> {
+  String valueChoose = "Indonesia";
+  List listItem = [
+    "Indonesia",
+    "Amerika Serikat",
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+      padding: const EdgeInsets.symmetric(
+        vertical: 0,
+        horizontal: 15,
+      ),
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.grey, width: 1),
+        borderRadius: BorderRadius.circular(5),
+      ),
+      child: DropdownButton(
+        iconSize: 30,
+        isExpanded: true,
+        underline: SizedBox(),
+        style: subtitleStyle,
+        // icon: Icon(Icons.arrow_drop_down),
+        value: valueChoose,
+        onChanged: (newValue) {
+          setState(() {
+            valueChoose = newValue;
+          });
+        },
+        items: listItem.map((valueItem) {
+          return DropdownMenuItem(
+            value: valueItem,
+            child: Text(valueItem),
+          );
+        }).toList(),
+      ),
     );
   }
 }

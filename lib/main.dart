@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nineteen_trackers/pages/onboarding_page.dart';
+import 'package:nineteen_trackers/pages/after_layout.dart';
 import 'package:nineteen_trackers/theme.dart';
 
 void main() {
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
           fontFamily: 'Nunito',
           primaryColor: pinkColor),
-      home: OnboardingPage(),
+      home: AfterLayout(),
       debugShowCheckedModeBanner: false,
     );
   }

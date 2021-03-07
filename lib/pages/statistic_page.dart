@@ -1,30 +1,47 @@
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:nineteen_trackers/kmb_generator.dart';
 import 'package:nineteen_trackers/my_icons.dart';
 import 'package:nineteen_trackers/theme.dart';
 import 'package:nineteen_trackers/widgets/alert_stay.dart';
+import 'package:nineteen_trackers/widgets/line_chart.dart';
 
 class StatisticPage extends StatelessWidget {
+  double lCasePure = 1174779;
+  double lDeathPure = 31976;
+  double lRecoverPure = 973452;
+
   @override
   Widget build(BuildContext context) {
+    var lCase = k_m_b_generator(lCasePure);
+    var lDeath = k_m_b_generator(lDeathPure);
+    var lRecover = k_m_b_generator(lRecoverPure);
+
     return Scaffold(
       backgroundColor: whiteColor,
       body: SafeArea(
-          child: ListView(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.fromLTRB(30, 55, 30, 15),
-            child: Text(
+          child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 30),
+        child: ListView(
+          children: <Widget>[
+            SizedBox(
+              height: 55,
+            ),
+            Text(
               'Statistika',
               style: titleStyle,
             ),
-          ),
-          Expanded(
-            child: Image.asset('assets/images/img_statistics.jpg'),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(30, 0, 30, 30),
-            child: Column(
+            SizedBox(
+              height: 15,
+            ),
+            Container(
+              child: LineChartWidget(),
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            Column(
               children: [
                 Container(
                   padding: EdgeInsets.all(20),
@@ -53,7 +70,7 @@ class StatisticPage extends StatelessWidget {
                           Column(
                             children: <Widget>[
                               Text(
-                                '192 K',
+                                lCase,
                                 style: titleStyle.copyWith(fontSize: 22),
                               ),
                               SizedBox(
@@ -77,7 +94,7 @@ class StatisticPage extends StatelessWidget {
                           Column(
                             children: <Widget>[
                               Text(
-                                '11 K',
+                                lDeath,
                                 style: titleStyle.copyWith(
                                     fontSize: 22, color: blackColor),
                               ),
@@ -105,7 +122,7 @@ class StatisticPage extends StatelessWidget {
                           Column(
                             children: <Widget>[
                               Text(
-                                '100 K',
+                                lRecover,
                                 style: titleStyle.copyWith(
                                     fontSize: 22, color: greenColor),
                               ),
@@ -138,11 +155,14 @@ class StatisticPage extends StatelessWidget {
                 SizedBox(
                   height: 20,
                 ),
-                AlertStay(),
+                // AlertStay(),
               ],
             ),
-          ),
-        ],
+            SizedBox(
+              height: 30,
+            ),
+          ],
+        ),
       )),
     );
   }

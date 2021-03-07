@@ -46,10 +46,10 @@ class InformationPage extends StatelessWidget {
                             decoration: BoxDecoration(
                                 color: Color(0xffF2F2F2),
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(12))),
+                                    BorderRadius.all(Radius.circular(10))),
                             child: Padding(
                               padding: const EdgeInsets.symmetric(
-                                  horizontal: 25, vertical: 30),
+                                  horizontal: 20, vertical: 25),
                               child: Flexible(
                                 child: Row(
                                   children: [

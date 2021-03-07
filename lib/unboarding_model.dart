@@ -6,10 +6,10 @@ class UnboardingModel {
 }
 
 List<UnboardingModel> contents = [
-  UnboardingModel(
-      image: 'assets/images/img_intro1.jpg',
-      text:
-          'Informasi yang lengkap dan akurat seputar covid 19 hanya untuk kamu'),
+  // UnboardingModel(
+  //     image: 'assets/images/img_intro1.jpg',
+  //     text:
+  //         'Informasi yang lengkap dan akurat seputar covid 19 hanya untuk kamu'),
   UnboardingModel(
       image: 'assets/images/img_intro2.jpg',
       text: 'Track data covid 19 hanya dari rumah saja'),
