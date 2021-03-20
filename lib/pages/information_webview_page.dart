@@ -44,7 +44,10 @@ class _InformationWebviewPageState extends State<InformationWebviewPage> {
             ),
             isLoading
                 ? Center(
-                    child: CircularProgressIndicator(),
+                    child: CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                          Theme.of(context).primaryColor),
+                    ),
                   )
                 : Stack(),
           ],

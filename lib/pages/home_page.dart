@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nineteen_trackers/global_covid_model.dart';
-import 'package:nineteen_trackers/indonesia_covid_model.dart';
+import 'package:nineteen_trackers/local_covid_model.dart';
 import 'package:nineteen_trackers/kmb_generator.dart';
 import 'package:nineteen_trackers/theme.dart';
 import 'package:nineteen_trackers/widgets/alert_stay.dart';
@@ -308,7 +308,10 @@ class _HomePageState extends State<HomePage> {
 
         /// While is no data show this
         return Center(
-          child: CircularProgressIndicator(),
+          child: CircularProgressIndicator(
+            valueColor:
+                AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor),
+          ),
         );
       },
     );
