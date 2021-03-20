@@ -32,6 +32,7 @@ dependencies:
   fl_chart: ^0.12.2
   shared_preferences: ^0.5.12+4
   after_layout: ^1.0.7+2
+  http: ^0.12.2
 
 dev_dependencies:
   flutter_test:

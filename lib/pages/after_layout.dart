@@ -31,6 +31,9 @@ class _AfterLayoutState extends State<AfterLayout>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: null);
+    return Scaffold(
+        body: Center(
+      child: CircularProgressIndicator(),
+    ));
   }
 }
