@@ -22,9 +22,13 @@ class GlobalCovid {
   }
 
   static Future<GlobalCovid> connectToApi() async {
-    var apiResult = await http.get(Strings.global_api);
-    var jsonObject = json.decode(apiResult.body);
+    try {
+      var apiResult = await http.get(Strings.global_api);
+      var jsonObject = json.decode(apiResult.body);
 
-    return GlobalCovid.createGlobalCovid(jsonObject);
+      return GlobalCovid.createGlobalCovid(jsonObject);
+    } catch (e) {
+      print(e);
+    }
   }
 }

@@ -5,7 +5,6 @@ import 'package:nineteen_trackers/local_covid_model.dart';
 import 'package:nineteen_trackers/kmb_generator.dart';
 import 'package:nineteen_trackers/my_icons.dart';
 import 'package:nineteen_trackers/theme.dart';
-import 'package:nineteen_trackers/widgets/alert_stay.dart';
 import 'package:nineteen_trackers/widgets/line_chart.dart';
 
 class StatisticPage extends StatefulWidget {
@@ -26,7 +25,7 @@ class _StatisticPageState extends State<StatisticPage> {
     var lDeath = k_m_b_generator(lDeathPure);
     var lRecover = k_m_b_generator(lRecoverPure);
 
-    final localCovidApi = LocalCovid.connectToApi();
+    final localCovidApi = LocalCovid.connectToApi('Indonesia');
 
     localCovidApi.then((value) => {localCovid = value});
 

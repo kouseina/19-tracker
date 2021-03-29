@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:nineteen_trackers/strings.dart';
 
 class LocalCovid {
   var confirmed;
@@ -21,8 +20,9 @@ class LocalCovid {
     );
   }
 
-  static Future<LocalCovid> connectToApi() async {
-    var apiResult = await http.get(Strings.local_api);
+  static Future<LocalCovid> connectToApi(String country) async {
+    var apiResult =
+        await http.get('https://covid19.mathdro.id/api/countries/' + country);
     var jsonObject = json.decode(apiResult.body);
 
     return LocalCovid.createLocalCovid(jsonObject);

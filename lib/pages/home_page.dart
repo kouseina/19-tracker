@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:nineteen_trackers/global_covid_model.dart';
 import 'package:nineteen_trackers/local_covid_model.dart';
@@ -11,24 +12,35 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // double gCasePure = 106855561;
-  // double gDeathPure = 2337714;
-  // double gRecoverPure = 59690884;
-  double lCasePure = 1174779;
-  double lDeathPure = 31976;
-  double lRecoverPure = 973452;
-
   GlobalCovid globalCovid = null;
   LocalCovid localCovid = null;
 
+  Country selectedCountry = null;
+  List<Country> countries = [
+    Country("Indonesia"),
+    Country("US"),
+    Country("China"),
+    Country("Singapore"),
+    Country("Malaysia"),
+    Country("United Arab Emirates"),
+  ];
+
+  List<DropdownMenuItem> generateItems(List<Country> countries) {
+    List<DropdownMenuItem> items = [];
+    for (var item in countries) {
+      items.add(DropdownMenuItem(
+        child: Text(item.name),
+        value: item,
+      ));
+    }
+    return items;
+  }
+
   @override
   Widget build(BuildContext context) {
-    var lCase = k_m_b_generator(lCasePure);
-    var lDeath = k_m_b_generator(lDeathPure);
-    var lRecover = k_m_b_generator(lRecoverPure);
-
     final globalCovidApi = GlobalCovid.connectToApi();
-    final localCovidApi = LocalCovid.connectToApi();
+    final localCovidApi = LocalCovid.connectToApi(
+        selectedCountry != null ? selectedCountry.name : 'Indonesia');
 
     globalCovidApi.then((value) => {globalCovid = value});
     localCovidApi.then((value) => {localCovid = value});
@@ -182,7 +194,33 @@ class _HomePageState extends State<HomePage> {
                                 ),
                                 Flexible(
                                   flex: 1,
-                                  child: ChooseCountry(),
+                                  child: Container(
+                                    margin:
+                                        const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: 0,
+                                      horizontal: 15,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color: Colors.grey, width: 1),
+                                      borderRadius: BorderRadius.circular(5),
+                                    ),
+                                    child: DropdownButton(
+                                      iconSize: 30,
+                                      isExpanded: true,
+                                      underline: SizedBox(),
+                                      style: subtitleStyle,
+                                      value: selectedCountry,
+                                      onChanged: (newValue) {
+                                        setState(() {
+                                          selectedCountry = newValue;
+                                        });
+                                      },
+                                      items: generateItems(countries),
+                                      hint: Text('Indonesia'),
+                                    ),
+                                  ),
                                 )
                               ],
                             ),
@@ -318,49 +356,7 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-class ChooseCountry extends StatefulWidget {
-  @override
-  _ChooseCountryState createState() => _ChooseCountryState();
-}
-
-class _ChooseCountryState extends State<ChooseCountry> {
-  String valueChoose = "Indonesia";
-  List listItem = [
-    "Indonesia",
-    // "Amerika Serikat",
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-      padding: const EdgeInsets.symmetric(
-        vertical: 0,
-        horizontal: 15,
-      ),
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey, width: 1),
-        borderRadius: BorderRadius.circular(5),
-      ),
-      child: DropdownButton(
-        iconSize: 30,
-        isExpanded: true,
-        underline: SizedBox(),
-        style: subtitleStyle,
-        // icon: Icon(Icons.arrow_drop_down),
-        value: valueChoose,
-        onChanged: (newValue) {
-          setState(() {
-            valueChoose = newValue;
-          });
-        },
-        items: listItem.map((valueItem) {
-          return DropdownMenuItem(
-            value: valueItem,
-            child: Text(valueItem),
-          );
-        }).toList(),
-      ),
-    );
-  }
+class Country {
+  String name;
+  Country(this.name);
 }
