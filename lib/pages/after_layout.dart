@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:after_layout/after_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:nineteen_trackers/custom_navigation.dart';
-import 'package:nineteen_trackers/pages/onboarding_page.dart';
+// import 'package:nineteen_trackers/pages/onboarding_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AfterLayout extends StatefulWidget {
@@ -19,11 +19,12 @@ class _AfterLayoutState extends State<AfterLayout>
     if (_seen) {
       Navigator.of(context).pushReplacement(
           new MaterialPageRoute(builder: (context) => new CustomNavigation()));
-    } else {
-      await prefs.setBool('seen', true);
-      Navigator.of(context).pushReplacement(
-          new MaterialPageRoute(builder: (context) => new OnboardingPage()));
     }
+    // else {
+    //   await prefs.setBool('seen', true);
+    //   Navigator.of(context).pushReplacement(
+    //       new MaterialPageRoute(builder: (context) => new OnboardingPage()));
+    // }
   }
 
   @override
